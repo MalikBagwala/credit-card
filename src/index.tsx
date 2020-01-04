@@ -5,10 +5,30 @@ import * as serviceWorker from "./serviceWorker";
 import { ThemeProvider as Theme, createGlobalStyle } from "styled-components";
 import theme from "./theme";
 const GlobalStyle = createGlobalStyle`
+    @import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
     * {
         margin:0;
         padding: 0;
-        box-sizing: border-box
+        box-sizing: border-box;
+        font-family: 'Rubik', sans-serif;
+        *:focus {
+            outline: none;
+        }
+    }
+    button{
+      border: none;
+      margin: 0;
+      padding: 0;
+      width: auto;
+      overflow: visible;
+
+      background: transparent;
+
+      /* inherit font & color from ancestor */
+      color: inherit;
+      font: inherit;
+
+      line-height: normal;
     }
 `;
 

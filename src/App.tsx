@@ -1,5 +1,6 @@
 import React from "react";
 import styled from "styled-components";
+import Card from "./components/Card";
 
 const Div = styled.div`
   width: 100%;
@@ -11,7 +12,11 @@ const Div = styled.div`
 `;
 
 const App: React.FC = () => {
-  return <Div></Div>;
+  return (
+    <Div>
+      <Card />
+    </Div>
+  );
 };
 
 export default App;
