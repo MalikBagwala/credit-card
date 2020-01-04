@@ -1,12 +1,14 @@
 import React, { useMemo } from "react";
 import styled from "styled-components";
 import { camelCase } from "lodash-es";
-const Wrapper = styled.div`
+export const Wrapper = styled.div`
+  width: ${props => props.width};
+  margin-bottom: 1.3rem;
   display: flex;
   flex-direction: column;
 `;
 
-const StyledInput = styled.input`
+export const StyledInput = styled.input`
   height: 50px;
   border: 1px solid ${props => props.theme["gray-300"]};
   font-size: 1.3rem;
@@ -21,19 +23,19 @@ const StyledInput = styled.input`
   }
 `;
 
-const Label = styled.label`
+export const Label = styled.label`
   font-size: 0.8rem;
   font-weight: 500;
   color: ${props => props.theme["gray-500"]};
   margin-bottom: 0.3rem;
 `;
 
-export interface InputProps {
-  label?: string;
-  id?: string;
-  name?: string;
-}
-const Input: React.FC<InputProps> = ({ label, id, name, ...otherProps }) => {
+// export interface InputProps {
+//   label?: string;
+//   id?: string;
+//   name?: string;
+// }
+export default function({ label, id, name, ...otherProps }) {
   const inputId = useMemo(() => (id ? id : camelCase(label)), [id, label]);
   const inputName = useMemo(() => (name ? name : inputId), [name, inputId]);
   return (
@@ -42,5 +44,4 @@ const Input: React.FC<InputProps> = ({ label, id, name, ...otherProps }) => {
       <StyledInput id={inputId} name={inputName} {...otherProps} />
     </Wrapper>
   );
-};
-export default Input;
+}
