@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useMemo } from "react";
 import styled from "styled-components";
 import { Label, Wrapper } from "./Input";
-
+import { camelCase } from "lodash-es";
 const StyledSelect = styled.select`
   height: 50px;
   border: 1px solid ${props => props.theme["gray-300"]};
@@ -23,11 +23,13 @@ const Option = styled.option`
     background: ${props => `${props.theme.primary} !important`};
   }
 `;
-export default function({ label, items, fill, ...otherProps }) {
+export default function({ label, id, name, items, fill, ...otherProps }) {
+  const inputId = useMemo(() => (id ? id : camelCase(label)), [id, label]);
+  const inputName = useMemo(() => (name ? name : inputId), [name, inputId]);
   return (
     <Wrapper fill={fill}>
       <Label>{label}</Label>
-      <StyledSelect size={1} {...otherProps}>
+      <StyledSelect id={inputId} name={inputName} size={1} {...otherProps}>
         {items &&
           items.map(item => <Option value={item.id} label={item.name} />)}
       </StyledSelect>

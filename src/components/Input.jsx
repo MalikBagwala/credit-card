@@ -12,6 +12,7 @@ export const StyledInput = styled.input`
   height: 50px;
   border: 1px solid ${props => props.theme["gray-300"]};
   font-size: 1.3rem;
+  width: 100%;
   color: ${props => props.theme["gray-500"]};
   padding: 0.7rem 1rem;
   border-radius: 5px;
