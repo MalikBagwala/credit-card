@@ -36,13 +36,21 @@ export const Label = styled.label`
 //   id?: string;
 //   name?: string;
 // }
-export default function({ label, id, name, ...otherProps }) {
+export default function({ label, id, name, onChange, ...otherProps }) {
   const inputId = useMemo(() => (id ? id : camelCase(label)), [id, label]);
   const inputName = useMemo(() => (name ? name : inputId), [name, inputId]);
+  function handleChange(e) {
+    onChange(e.target.id, e.target.value);
+  }
   return (
     <Wrapper>
       <Label>{label}</Label>
-      <StyledInput id={inputId} name={inputName} {...otherProps} />
+      <StyledInput
+        id={inputId}
+        name={inputName}
+        onChange={handleChange}
+        {...otherProps}
+      />
     </Wrapper>
   );
 }
