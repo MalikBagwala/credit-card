@@ -3,7 +3,9 @@ import ReactDOM from "react-dom";
 import App from "./App";
 import * as serviceWorker from "./serviceWorker";
 import { ThemeProvider as Theme, createGlobalStyle } from "styled-components";
+import { Provider } from "react-redux";
 import theme from "./theme";
+import store from "./global/store";
 const GlobalStyle = createGlobalStyle`
     @import url('https://fonts.googleapis.com/css?family=Rubik&display=swap');
     * {
@@ -34,8 +36,10 @@ const GlobalStyle = createGlobalStyle`
 
 ReactDOM.render(
   <Theme theme={theme}>
-    <GlobalStyle />
-    <App />
+    <Provider store={store}>
+      <GlobalStyle />
+      <App />
+    </Provider>
   </Theme>,
   document.getElementById("root")
 );
