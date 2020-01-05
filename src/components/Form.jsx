@@ -3,7 +3,8 @@ import Input from "./Input.jsx";
 import Button from "./Button.jsx";
 import Select from "./Select";
 import styled from "styled-components";
-
+import { useSelector, useDispatch } from "react-redux";
+import { CHANGE_FORM } from "../global/reducer.js";
 const Div = styled.div`
   display: flex;
 
@@ -31,10 +32,21 @@ const FormButton = styled(Button)`
 `;
 
 export default function() {
+  const state1 = useSelector(state => {
+    console.log(state);
+  });
+  const state = {};
+  const dispatch = useDispatch();
+  function handleChange(id, value) {
+    dispatch({
+      type: CHANGE_FORM,
+      payload: { id, value }
+    });
+  }
   return (
     <Form>
-      <Input autofocus={true} label="Card Number" />
-      <Input label="Card Name" />
+      <Input autofocus={true} label="Card Number" value={state.cardNumber} />
+      <Input label="Card Name" value={state.cardName} />
       <Row>
         <Div>
           <FormSelect
@@ -51,6 +63,7 @@ export default function() {
             ]}
             type="select"
             label="Expiration Date"
+            value={state.expirationDate}
           />
           <FormSelect
             fill

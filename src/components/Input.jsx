@@ -36,7 +36,7 @@ export const Label = styled.label`
 //   id?: string;
 //   name?: string;
 // }
-export default function({ label, id, name, onChange, ...otherProps }) {
+export default function({ label, id, value, name, onChange, ...otherProps }) {
   const inputId = useMemo(() => (id ? id : camelCase(label)), [id, label]);
   const inputName = useMemo(() => (name ? name : inputId), [name, inputId]);
   function handleChange(e) {
@@ -49,6 +49,7 @@ export default function({ label, id, name, onChange, ...otherProps }) {
         id={inputId}
         name={inputName}
         onChange={handleChange}
+        value={value}
         {...otherProps}
       />
     </Wrapper>
